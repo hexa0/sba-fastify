@@ -129,12 +129,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-# my website content/apis
+# my stuff
 ssl/*.pem
-apps/hexa/
-apps/streamavi/
-apps/mvs_webgl_pwa/
-apps/banner/
-src/routes/hexa-*
-config.jsonc
 ecosystem.config.js
