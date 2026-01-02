@@ -132,3 +132,6 @@ dist
 # my stuff
 ssl/*.pem
 ecosystem.config.js
+
+#old db
+db/*
