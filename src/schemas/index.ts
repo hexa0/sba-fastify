@@ -13,6 +13,17 @@ export const BaseSaveQuerySchema = z.object({
     name: z.string().min(1).max(64),
 });
 
+// POST /base/rename
+export const BaseRenameQuerySchema = z.object({
+    oldName: z.string().min(1).max(64),
+    newName: z.string().min(1).max(64)
+});
+
+// POST /base/rename
+export const BaseDeleteQuerySchema = z.object({
+    name: z.string().min(1).max(64)
+});
+
 // POST /unlockables/set
 export const UnlockableSetSchema = z.object({
     userId: z.coerce.number().int(),

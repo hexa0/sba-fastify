@@ -13,7 +13,6 @@ import permissionsPlugin from "./plugins/permissions";
 import systemRoutes from "./routes/system";
 import { env } from "./utils/environment";
 
-
 const server = Fastify({ logger: true });
 
 server.register(fastifyJwt, { secret: env.JWT_SECRET });
@@ -41,6 +40,14 @@ server.setErrorHandler((error, request, reply) => {
 	server.log.error(error);
 	reply.status(500).send({ error: "Internal Server Error" });
 });
+
+server.addContentTypeParser(
+	"application/octet-stream",
+	{ parseAs: "buffer" },
+	(request, body, done) => {
+		done(null, body);
+	}
+);
 
 const start = async () => {
 	try {

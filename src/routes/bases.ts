@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { Base } from "../models/Base";
-import { BaseSaveQuerySchema } from "../schemas";
+import { BaseDeleteQuerySchema, BaseRenameQuerySchema, BaseSaveQuerySchema } from "../schemas";
 
 export default async function baseRoutes(server: FastifyInstance) {
 	server.post(
@@ -37,6 +37,55 @@ export default async function baseRoutes(server: FastifyInstance) {
 				"name updatedAt createdAt size"
 			);
 			return bases;
+		}
+	);
+
+	server.patch(
+		"/base/rename",
+		{ preHandler: [server.authenticate] },
+		async (request, reply) => {
+			const { oldName, newName } = BaseRenameQuerySchema.parse(
+				request.query
+			);
+			const { userId } = request.user as { userId: number };
+
+			const exists = await Base.findOne({ userId, name: newName });
+			if (exists) {
+				return reply
+					.status(409)
+					.send({ error: "A base with the new name already exists" });
+			}
+
+			const result = await Base.findOneAndUpdate(
+				{ userId, name: oldName },
+				{ $set: { name: newName } },
+				{ new: true }
+			);
+
+			if (!result) {
+				return reply
+					.status(404)
+					.send({ error: "Original base not found" });
+			}
+
+			return { success: true, updatedName: result.name };
+		}
+	);
+
+	server.delete(
+		"/base/delete",
+		{ preHandler: [server.authenticate] },
+		async (request, reply) => {
+			const { name } = BaseDeleteQuerySchema.parse(request.query);
+			const { userId } = request.user as { userId: number };
+
+			const result = await Base.findOneAndDelete({ userId, name });
+
+			if (!result) {
+				return reply.status(404).send({ error: "Base not found" });
+			}
+
+			return { success: true };
 		}
 	);
 }
