@@ -13,7 +13,6 @@ declare module "fastify" {
 }
 
 const authPlugin: FastifyPluginAsync = async (server) => {
-	// 1. A decorator to check JWT on protected routes
 	server.decorate(
 		"authenticate",
 		async (request: FastifyRequest, reply: FastifyReply) => {
@@ -27,7 +26,6 @@ const authPlugin: FastifyPluginAsync = async (server) => {
 		}
 	);
 
-	// 2. Helper for Constant-Time Comparison (Prevents timing attacks)
 	server.decorate("verifyRobloxKey", (inputKey: string) => {
 		const input = Buffer.from(inputKey);
 		const actual = Buffer.from(env.ROBLOX_SECRET_KEY);

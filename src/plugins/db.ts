@@ -6,7 +6,6 @@ import { env } from "../utils/environment";
 
 const dbPlugin: FastifyPluginAsync = async (server) => {
 	try {
-		// Listen for connection events for better logging
 		mongoose.connection.on("connected", () =>
 			server.log.info("MongoDB Connected")
 		);
@@ -15,10 +14,8 @@ const dbPlugin: FastifyPluginAsync = async (server) => {
 			server.log.error({ err }, "MongoDB Connection Error")
 		);
 
-		// Connect to the database
 		await mongoose.connect(env.DATABASE_URL);
 
-		// Decorate the server so you can access mongoose if needed elsewhere
 		server.decorate("db", mongoose.connection);
 	} catch (error) {
 		server.log.error({ err: error }, "Failed to initialize MongoDB");

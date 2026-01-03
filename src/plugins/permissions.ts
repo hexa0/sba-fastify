@@ -18,11 +18,9 @@ const permissionsPlugin: FastifyPluginAsync = async (server) => {
 		cachedPerms = await getResolvedPermissions();
 	});
 
-	// Initial load
 	await server.refreshPermissions();
 	server.decorate("permissions", () => cachedPerms);
 
-	// Watch the directory for changes
 	const watcher = watch(
 		"./permissions",
 		{ recursive: true },

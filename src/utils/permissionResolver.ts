@@ -10,7 +10,6 @@ export async function getResolvedPermissions() {
 
 	const rawData = JSON.parse(readFileSync(mainPath, "utf-8"));
 
-	// Recursive function to find strings and swap them with file content
 	const resolveValue = (val: any): any => {
 		if (Array.isArray(val)) {
 			return val.map(resolveValue);
@@ -21,13 +20,12 @@ export async function getResolvedPermissions() {
 			}
 			return newObj;
 		} else if (typeof val === "string") {
-			// 1. Check for Roles (.json)
 			const rolePath = path.join(PERMS_DIR, "roles", `${val}.json`);
 			if (existsSync(rolePath)) {
 				try {
 					return JSON.parse(readFileSync(rolePath, "utf-8"));
 				} catch {
-					return val; // Fallback to raw string if JSON is malformed
+					return val;
 				}
 			}
 

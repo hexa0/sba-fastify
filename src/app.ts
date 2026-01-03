@@ -29,15 +29,14 @@ server.register(systemRoutes);
 server.setErrorHandler((error, request, reply) => {
 	if (error instanceof ZodError) {
 		const readableIssues = error.issues
-            .map(i => `• ${i.path.join('.')}: ${i.message}`)
-            .join('\n');
-			
+			.map((i) => `• ${i.path.join(".")}: ${i.message}`)
+			.join("\n");
+
 		return reply.status(400).send({
 			success: false,
 			error: `Data Validation Error:\n${readableIssues}`,
 		});
 	}
-	
 
 	if (error instanceof Error) {
 		const fastifyError = error as FastifyError;
@@ -45,16 +44,16 @@ server.setErrorHandler((error, request, reply) => {
 		server.log.error(error);
 
 		return reply.status(statusCode).send({
-            success: false,
-            error: `${fastifyError.code}\n${error.message}\nStack Trace:\n${error.stack}`,
-        });
+			success: false,
+			error: `${fastifyError.code}\n${error.message}\nStack Trace:\n${error.stack}`,
+		});
 	}
 
 	server.log.error(error);
-    reply.status(500).send({
-        success: false,
-        error: `Uncaught Non-Error Exception: ${String(error)}`
-    });
+	reply.status(500).send({
+		success: false,
+		error: `Uncaught Non-Error Exception: ${String(error)}`,
+	});
 });
 
 server.addContentTypeParser(

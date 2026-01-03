@@ -1,6 +1,10 @@
 import { FastifyInstance } from "fastify";
 import { Base } from "../models/Base";
-import { BaseDeleteQuerySchema, BaseRenameQuerySchema, BaseSaveQuerySchema } from "../schemas";
+import {
+	BaseDeleteQuerySchema,
+	BaseRenameQuerySchema,
+	BaseSaveQuerySchema,
+} from "../schemas";
 
 export default async function baseRoutes(server: FastifyInstance) {
 	server.post(

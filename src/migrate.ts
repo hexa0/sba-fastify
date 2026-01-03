@@ -5,7 +5,6 @@ import { UnlockableData } from "./models/Unlockable";
 import { Base } from "./models/Base";
 import "dotenv/config";
 
-// Pointing to your Samba mount for original metadata
 const LEGACY_DB_PATH = "/server/node-servers/stamper-build/alpha/db/";
 
 async function migrate() {
@@ -17,7 +16,6 @@ async function migrate() {
 		await mongoose.connect(dbUrl);
 		console.log("Connected to MongoDB");
 
-		// --- 1. Migrate EE Data ---
 		const eePath = path.join(LEGACY_DB_PATH, "ee");
 		if (existsSync(eePath)) {
 			const files = readdirSync(eePath).filter((f) =>
@@ -28,7 +26,10 @@ async function migrate() {
 			for (const file of files) {
 				const filePath = path.join(eePath, file);
 				const stats = statSync(filePath);
-				const trueCreationDate = (stats.birthtime > stats.mtime) ? stats.mtime : stats.birthtime;
+				const trueCreationDate =
+					stats.birthtime > stats.mtime
+						? stats.mtime
+						: stats.birthtime;
 				const userId = parseInt(file.replace(".json", ""));
 				const content = await Bun.file(filePath).json();
 				const itemsArray = Object.keys(content);
@@ -37,17 +38,16 @@ async function migrate() {
 					{ userId },
 					{
 						$set: {
-							unlockedItems: itemsArray,
-							createdAt: trueCreationDate, // Forced legacy date
-							updatedAt: stats.mtime, // Original save date
+							unlockedItems: itemsArray;
+							createdAt: trueCreationDate,
+							updatedAt: stats.mtime,
 						},
 					},
-					{ upsert: true, timestamps: false } // Disable Mongoose auto-timestamps for migration
+					{ upsert: true, timestamps: false }
 				);
 			}
 		}
 
-		// --- 2. Migrate Bases ---
 		const basesPath = path.join(LEGACY_DB_PATH, "bases");
 		if (existsSync(basesPath)) {
 			const userDirs = readdirSync(basesPath);
@@ -65,8 +65,11 @@ async function migrate() {
 					if (statSync(itemPath).isDirectory()) continue;
 
 					const stats = statSync(itemPath);
-					const trueCreationDate = (stats.birthtime > stats.mtime) ? stats.mtime : stats.birthtime;
-					
+					const trueCreationDate =
+						stats.birthtime > stats.mtime
+							? stats.mtime
+							: stats.birthtime;
+
 					const file = Bun.file(itemPath);
 					const arrayBuffer = await file.arrayBuffer();
 					const buffer = Buffer.from(arrayBuffer);

@@ -8,9 +8,9 @@ declare module "fastify" {
 
 export default async function authRoutes(server: FastifyInstance) {
 	server.post("/auth/handshake", async (request, reply) => {
-		const key = request.headers['x-roblox-secret'] as string;
+		const key = request.headers["x-roblox-secret"] as string;
 		const { userId } = request.body as { userId: number };
-		
+
 		if (!server.verifyRobloxKey(key)) {
 			return reply.status(403).send({ error: "Invalid Secret Key" });
 		}
