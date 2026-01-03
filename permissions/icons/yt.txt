@@ -1,0 +1,1 @@
+rbxasset://textures/ui/icon_star-16.png

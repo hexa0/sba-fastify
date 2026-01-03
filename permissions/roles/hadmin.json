@@ -1,0 +1,11 @@
+{
+	"kick":true,
+	"ban":true,
+	"debugstuff":true,
+	"devstuff":false,
+	"fly":true,
+	"update":true,
+	"Name":"Head-Administrator",
+	"Color":[82, 183, 255],
+	"Image":"rbxassetid://3449533050"
+}

@@ -1,0 +1,12 @@
+{
+	"kick":false,
+	"ban":false,
+	"debugstuff":false,
+	"devstuff":false,
+	"fly":false,
+	"update":false,
+	"vip":true,
+	"Name":"Protogen",
+	"Color":[255, 48, 48],
+	"Image":"rbxassetid://4800347255"
+}

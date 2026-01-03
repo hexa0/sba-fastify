@@ -1,0 +1,1 @@
+rbxasset://textures/ui/icon_admin-16.png

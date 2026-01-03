@@ -1,0 +1,1 @@
+rbxasset://textures/ui/icon_placeowner.png

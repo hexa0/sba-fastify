@@ -1,0 +1,253 @@
+{
+	"WOOFER137":{
+		"CanPunish":false,
+		"Perms":["cowner","hdev","admin"],
+		"Nickname":["Hexa","SourceSansBold",[255, 150, 170]],
+		"icons":[
+			"cowner",
+			"dev",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"ejr2d":{
+		"CanPunish":false,
+		"Perms":["owner","hdev","admin"],
+		"Nickname":["Ja","SourceSansBold",[199, 135, 255]],
+		"icons":[
+			"owner",
+			"dev",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"poopsh":{
+		"CanPunish":false,
+		"Perms":["admin"],
+		"Nickname":["poopsh","SourceSansBold",[127, 141, 245]],
+		"icons":[
+			"owner",
+			"dev",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+    "Kaizer_i":{
+		"CanPunish":false,
+		"Perms":["dev","admin"],
+		"Nickname":["Kaizer","SourceSansBold",[178, 64, 169]],
+		"icons":[
+			"dev",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+        "click01":"Ayes",
+		"click02":"Bfurry scripter",
+		"click03":"afurry scripter"
+	},
+	"Fyre_Productions":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["DevBuilder","SourceSansBold",[255, 255, 255]],
+		"icons":["rbxassetid://7511906750"],
+		"tx":""
+	},
+	"I_DontNoAGoodName":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["IfYou CThisThenHello","SourceSansBold",[255, 255, 255]],
+		"icons":["rbxassetid://14861556"],
+		"tx":""
+	},
+	"lao0x":{
+		"CanPunish":false,
+		"Perms":["admin","vip"],
+		"Nickname":["presented","SourceSansBold",[30, 232, 36]],
+		"icons":["rbxassetid://7573336016","admin"],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"SamTheMapleHam":{
+		"CanPunish":false,
+		"Perms":["admin","vip"],
+		"Nickname":["presented","SourceSansBold",[30, 232, 36]],
+		"icons":["rbxassetid://7573336016","admin"],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"c_bie":{
+		"CanPunish":true,
+		"Perms":["vip"],
+		"Nickname":["cubie","SourceSansBold",[130, 226, 255]],
+		"icons":[],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"Dizzota":{
+		"CanPunish":true,
+		"Perms":[{
+			"kick":false,
+			"ban":false,
+			"debugstuff":false,
+			"devstuff":false,
+			"fly":false,
+			"update":false,
+			"vip":true,
+			"Name":"bnuuy",
+			"Color":[255, 170, 244],
+			"Image":"rbxassetid://7551500081"
+		}],
+		"Nickname":["Dizzy","SourceSansBold",[255, 170, 244]],
+		"icons":["rbxassetid://7551500081"],
+		"tx":"click this lol\n\"are you a furry?\" - CrampedToe 2021\n\"trap \"\"\"her\"\"\"\" - CrampedToe 2021\n",
+		"click01":"Ayes",
+		"click02":"Bi'm a huge furry and no im not a girl, also thanks for buying vip",
+		"click03":"ai'm a huge furry and no im not a girl, also please buy vip i'm broke 😥😥😥😥😥😥😥😥😥😥"
+	},
+	"Conikku":{
+		"CanPunish":true,
+		"Perms":["protogen"],
+		"Nickname":["Conikku","SourceSansBold",[255, 48, 48]],
+		"icons":[
+			"rbxassetid://6265916617"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"pakyaw5":{
+		"CanPunish":false,
+		"Perms":["owner","hdev","admin"],
+		"Nickname":["Vip","SourceSansBold",[229, 168, 255]],
+		"icons":[
+			"owner",
+			"dev",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"TacoBoy1619":{
+		"CanPunish":false,
+		"Perms":["admin"],
+		"Nickname":["Taco","SourceSansBold",[255, 118, 38]],
+		"icons":[
+			"rbxassetid://179874865",
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"todor05":{
+		"CanPunish":false,
+		"Perms":["admin"],
+		"Nickname":["tod","SourceSansBold",[255, 118, 38]],
+		"icons":[
+			"admin"
+		],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"Boaz2004":{
+		"CanPunish":false,
+		"Perms":[],
+		"Nickname":["Xintervention","SourceSansBold",[153,14,239]],
+		"icons":[],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"MinorCandycane":{
+		"CanPunish":false,
+		"Perms":[],
+		"Nickname":["Leafu","SourceSansBold",[152, 251, 152]],
+		"icons":[],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"Bluphine":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["Bluphine","SourceSansBold",[14,134,239]],
+		"icons":[],
+		"tx":"click this ⚪for free VIP",
+		"click01":"Aenjoy the free vip",
+		"click02":"Benjoy the free vip lol",
+		"click03":"aunfortunately you do not meet the requirements to receive your VIP\nto recieve your vip you are required to own vip"
+	},
+	"legoguy2213":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["Killer Queen","SciFi",[255, 163, 231]],
+		"icons":["rbxassetid://2015087"],
+		"tx":"click this 👈",
+		"click01":"FKiller Queen Has Already Touched This Text.",
+		"click02":"FKiller Queen Has Already Touched This Text.",
+		"click03":"FKiller Queen Has Already Touched This Text."
+	},
+	"benqweryt903":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["benqweryt903","SourceSansBold",[127, 255, 127]],
+		"icons":["rbxassetid://60950630"]
+	},
+	"Brombo":{
+		"CanPunish":false,
+		"Perms":["admin"],
+		"Nickname":["Brombo","SourceSansBold",[152, 0, 186]],
+		"icons":[
+			"admin"
+		],
+		"tx":"click this, it'll say gullible.",
+		"click01":"_",
+		"click02":"EDid you really fall for that?",
+		"click03":"EDid you really fall for that?"
+	},
+	"JaymazingCreations":{
+		"CanPunish":false,
+		"Perms":[],
+		"Nickname":["Jalen","SourceSansBold",[1, 255, 167]],
+		"icons":[]
+	},
+	"Ffffcakkkeerty123456":{
+		"CanPunish":true,
+		"Perms":[],
+		"Nickname":["Ffffcakkkeerty123456","SourceSansBold",[127,255,127]],
+		"icons":[],
+		"tx":"click this to do a big brain test",
+		"click01":"Ayou are big brain 🧠",
+		"click02":"Byou are big brain lol 🧠",
+		"click03":"ajk you are small brain 😢"
+	},
+	"Jasonf0311":{
+		"CanPunish":false,
+		"Perms":["admin"],
+		"Nickname":["Jason","SourceSansBold",[0, 255, 255]],
+		"icons":["admin"]
+	}
+}

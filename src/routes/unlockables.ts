@@ -1,0 +1,32 @@
+import { FastifyInstance } from "fastify";
+import { UnlockableData } from "../models/Unlockable";
+import { UnlockableSetSchema } from "../schemas";
+
+export default async function unlockableRoutes(server: FastifyInstance) {
+	server.get("/unlockables/get/:userId", async (request) => {
+		const { userId } = request.params as { userId: string };
+		const data = await UnlockableData.findOne({ userId: parseInt(userId) });
+
+		if (!data || !data.unlockedItems) {
+			return [];
+		}
+
+		return data.unlockedItems;
+	});
+
+	server.post(
+		"/unlockables/set",
+		{ preHandler: [server.authenticate] },
+		async (request) => {
+			const { userId, name } = UnlockableSetSchema.parse(request.body);
+
+			await UnlockableData.findOneAndUpdate(
+				{ userId },
+				{ $addToSet: { unlockedItems: name } },
+				{ upsert: true }
+			);
+
+			return { success: true };
+		}
+	);
+}

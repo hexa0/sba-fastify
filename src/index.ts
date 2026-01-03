@@ -1,1 +1,0 @@
-console.log(`init! running ${process.version}`)

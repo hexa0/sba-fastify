@@ -1,0 +1,10 @@
+{
+	"kick":true,
+	"ban":true,
+	"debugstuff":true,
+	"devstuff":true,
+	"fly":true,
+	"update":true,
+	"Name":"Owner",
+	"Image":"rbxassetid://3453365086"
+}
