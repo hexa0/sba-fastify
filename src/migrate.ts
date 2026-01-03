@@ -66,14 +66,17 @@ async function migrate() {
 
 					const stats = statSync(itemPath);
 					const trueCreationDate = (stats.birthtime > stats.mtime) ? stats.mtime : stats.birthtime;
+					
 					const file = Bun.file(itemPath);
-					const content = await file.text();
+					const arrayBuffer = await file.arrayBuffer();
+					const buffer = Buffer.from(arrayBuffer);
 
 					await Base.updateOne(
 						{ userId, name: itemName },
 						{
 							$set: {
-								content,
+								content: buffer,
+								size: buffer.length,
 								createdAt: trueCreationDate,
 								updatedAt: stats.mtime,
 							},

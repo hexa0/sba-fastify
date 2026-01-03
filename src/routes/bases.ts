@@ -17,7 +17,10 @@ export default async function baseRoutes(server: FastifyInstance) {
 
 			await Base.updateOne(
 				{ userId, name },
-				{ content: contentBuffer.toString("binary") },
+				{
+					content: contentBuffer,
+					size: contentBuffer.length,
+				},
 				{ upsert: true }
 			);
 
@@ -30,7 +33,9 @@ export default async function baseRoutes(server: FastifyInstance) {
 		{ preHandler: [server.authenticate] },
 		async (request) => {
 			const { userId } = request.user as { userId: number };
-			const bases = await Base.find({ userId }).select("name updatedAt createdAt size");
+			const bases = await Base.find({ userId }).select(
+				"name updatedAt createdAt size"
+			);
 			return bases;
 		}
 	);
