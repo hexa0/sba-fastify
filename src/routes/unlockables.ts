@@ -3,16 +3,20 @@ import { UnlockableData } from "../models/Unlockable";
 import { UnlockableSetSchema } from "../schemas";
 
 export default async function unlockableRoutes(server: FastifyInstance) {
-	server.get("/unlockables/get/:userId", async (request) => {
-		const { userId } = request.params as { userId: string };
-		const data = await UnlockableData.findOne({ userId: parseInt(userId) });
+	server.get(
+		"/unlockables/get",
+		{ preHandler: [server.authenticate] },
+		async (request) => {
+			const { userId } = request.user as { userId: number };
+			const data = await UnlockableData.findOne({ userId: userId });
 
-		if (!data || !data.unlockedItems) {
-			return [];
+			if (!data || !data.unlockedItems) {
+				return [];
+			}
+
+			return data.unlockedItems;
 		}
-
-		return data.unlockedItems;
-	});
+	);
 
 	server.post(
 		"/unlockables/set",
