@@ -1,7 +1,8 @@
 import { FastifyPluginAsync } from "fastify";
 import fp from "fastify-plugin";
 import mongoose from "mongoose";
-import { env } from "../app";
+import "dotenv/config";
+import { env } from "../utils/environment";
 
 const dbPlugin: FastifyPluginAsync = async (server) => {
 	try {

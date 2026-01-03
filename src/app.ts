@@ -11,16 +11,8 @@ import unlockableRoutes from "./routes/unlockables";
 import logRoutes from "./routes/logs";
 import permissionsPlugin from "./plugins/permissions";
 import systemRoutes from "./routes/system";
+import { env } from "./utils/environment";
 
-const envSchema = z.object({
-	ROBLOX_SECRET_KEY: z.string().min(32),
-	JWT_SECRET: z.string().min(32),
-	DATABASE_URL: z.string(),
-	PORT: z.string().default("3000").transform(Number),
-	NODE_ENV: z.enum(["development", "production"]).default("development"),
-});
-
-export const env = envSchema.parse(process.env);
 
 const server = Fastify({ logger: true });
 

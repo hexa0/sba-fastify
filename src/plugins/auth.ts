@@ -1,7 +1,7 @@
 import { FastifyPluginAsync, FastifyRequest, FastifyReply } from "fastify";
 import fp from "fastify-plugin";
-import { env } from "../app";
 import { timingSafeEqual } from "crypto";
+import { env } from "../utils/environment";
 
 declare module "fastify" {
 	interface FastifyInstance {

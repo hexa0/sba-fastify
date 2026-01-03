@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+    mongodb:
+        image: mongo:latest
+        container_name: sba-mongo
+        restart: always
+        ports:
+            - "27017:27017" # Allows you to still use 'mongo' shell from the host
+        volumes:
+            - ./db:/data/db
+        healthcheck:
+            test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+            interval: 5s
+            timeout: 5s
+            retries: 5
+
+    api:
+        build: .
+        container_name: sba-api
+        restart: always
+        ports:
+            - "2834:2834"
+        depends_on:
+            - mongodb
+        env_file:
+            - .env
+        environment:
+            # We override the DATABASE_URL to use the Docker service name
+            - DATABASE_URL=mongodb://mongodb:27017/stamperBuild
+            - PORT=2834
