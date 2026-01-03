@@ -29,16 +29,15 @@ server.register(systemRoutes);
 server.setErrorHandler((error, request, reply) => {
 	if (error instanceof ZodError) {
 		return reply.status(400).send({
-			error: "Validation Error",
-			details: error.issues.map((i) => ({
+			success: false,
+			error: `Data Validation Error\n${JSON.stringify(error.issues.map((i) => ({
 				path: i.path,
 				message: i.message,
-			})),
+			}))), null, 4}`,
 		});
 	}
 
-	server.log.error(error);
-	reply.status(500).send({ error: "Internal Server Error" });
+	reply.status(500).send({ success: false, error: error });
 });
 
 server.addContentTypeParser(

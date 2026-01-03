@@ -68,7 +68,7 @@ export default async function baseRoutes(server: FastifyInstance) {
 					.send({ error: "Original base not found" });
 			}
 
-			return { success: true, updatedName: result.name };
+			return { success: true };
 		}
 	);
 
