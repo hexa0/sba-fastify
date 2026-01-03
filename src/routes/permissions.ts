@@ -1,14 +1,6 @@
 import { FastifyInstance } from "fastify";
 
-export default async function configRoutes(server: FastifyInstance) {
-	server.get("/status/test", async () => {
-		return {
-			status: "online",
-			time: Date.now(),
-			engine: "Bun/" + Bun.version,
-		};
-	});
-
+export default async function permissionRoutes(server: FastifyInstance) {
 	server.get("/perms/get", async () => {
 		return server.permissions();
 	});

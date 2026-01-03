@@ -6,10 +6,11 @@ import authPlugin from "./plugins/auth";
 import authRoutes from "./routes/auth";
 import dbPlugin from "./plugins/db";
 import baseRoutes from "./routes/bases";
-import configRoutes from "./routes/config";
+import permissionRoutes from "./routes/permissions";
 import unlockableRoutes from "./routes/unlockables";
 import logRoutes from "./routes/logs";
 import permissionsPlugin from "./plugins/permissions";
+import systemRoutes from "./routes/system";
 
 const envSchema = z.object({
 	ROBLOX_SECRET_KEY: z.string().min(32),
@@ -28,10 +29,11 @@ server.register(dbPlugin);
 server.register(authPlugin);
 server.register(permissionsPlugin);
 server.register(authRoutes);
-server.register(configRoutes);
+server.register(permissionRoutes);
 server.register(baseRoutes);
 server.register(unlockableRoutes);
 server.register(logRoutes);
+server.register(systemRoutes);
 
 server.setErrorHandler((error, request, reply) => {
 	if (error instanceof ZodError) {
