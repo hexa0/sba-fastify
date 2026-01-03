@@ -6,7 +6,7 @@ import { Base } from "./models/Base";
 import "dotenv/config";
 
 // Pointing to your Samba mount for original metadata
-const LEGACY_DB_PATH = "/mnt/share/server/node-servers/stamper-build/alpha/db/";
+const LEGACY_DB_PATH = "/server/node-servers/stamper-build/alpha/db/";
 
 async function migrate() {
 	try {
