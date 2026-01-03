@@ -128,10 +128,3 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-
-# my stuff
-ssl/*.pem
-ecosystem.config.js
-
-#old db
-db/*
