@@ -3,40 +3,49 @@ import path from "path";
 
 const PERMS_DIR = path.join(process.cwd(), "permissions");
 
+type PlayerPermsUnprocessed = {
+	icons: [string];
+	Perms: [string];
+}
+
 export async function getResolvedPermissions() {
 	const mainPath = path.join(PERMS_DIR, "permissions.json");
 	if (!existsSync(mainPath))
 		return { error: "Main permissions file missing" };
 
-	const rawData = JSON.parse(readFileSync(mainPath, "utf-8"));
+	const data = JSON.parse(readFileSync(mainPath, "utf-8")) as [PlayerPermsUnprocessed];
 
-	const resolveValue = (val: any): any => {
-		if (Array.isArray(val)) {
-			return val.map(resolveValue);
-		} else if (typeof val === "object" && val !== null) {
-			const newObj: any = {};
-			for (const key in val) {
-				newObj[key] = resolveValue(val[key]);
-			}
-			return newObj;
-		} else if (typeof val === "string") {
-			const rolePath = path.join(PERMS_DIR, "roles", `${val}.json`);
+	for (let index = 0; index < data.length; index++) {
+		const player = data[index];
+		
+		for (let index = 0; index < player.Perms.length; index++) {
+			const key = player.Perms[index];
+
+			const rolePath = path.join(PERMS_DIR, "roles", `${key}.json`);
+
 			if (existsSync(rolePath)) {
 				try {
-					return JSON.parse(readFileSync(rolePath, "utf-8"));
+					player.Perms[index] = readFileSync(rolePath, "utf-8");
 				} catch {
-					return val;
+					
 				}
 			}
+		}
 
-			// 2. Check for Icons (.txt)
-			const iconPath = path.join(PERMS_DIR, "icons", `${val}.txt`);
+		for (let index = 0; index < player.icons.length; index++) {
+			const key = player.icons[index];
+
+			const iconPath = path.join(PERMS_DIR, "icons", `${key}.txt`);
+
 			if (existsSync(iconPath)) {
-				return readFileSync(iconPath, "utf-8").trim();
+				try {
+					player.icons[index] = readFileSync(iconPath, "utf-8");
+				} catch {
+					
+				}
 			}
 		}
-		return val;
-	};
+	}
 
-	return resolveValue(rawData);
+	return data;
 }
