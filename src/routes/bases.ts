@@ -42,11 +42,26 @@ export default async function baseRoutes(server: FastifyInstance) {
 			
 			const { data } = request.body as { data: string };
 
-			if (!data) return reply.status(400).send({ error: "No data provided" });
+			if (!data)
+				return reply.status(400).send({ error: "No data provided" });
 
-			const contentBuffer = Buffer.alloc(data.length);
-			for (let i = 0; i < data.length; i++) {
-				contentBuffer[i] = data.charCodeAt(i) - 32;
+			if (data.length % 2 !== 0) {
+				return reply
+					.status(400)
+					.send({ error: "Invalid Base96 data length" });
+			}
+
+			const RANGE = 95;
+			const OFFSET = 32;
+			const decodedLength = data.length / 2;
+			const contentBuffer = Buffer.alloc(decodedLength);
+
+			for (let i = 0; i < decodedLength; i++) {
+				const c1 = data.charCodeAt(i * 2) - OFFSET;
+				const c2 = data.charCodeAt(i * 2 + 1) - OFFSET;
+				
+				// Reconstruct the byte (0-255)
+				contentBuffer[i] = (c1 * RANGE) + c2;
 			}
 
 			await Base.updateOne(
