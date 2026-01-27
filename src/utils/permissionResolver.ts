@@ -23,7 +23,7 @@ export async function getResolvedPermissions() {
 
 			if (existsSync(rolePath)) {
 				try {
-					player.Perms[index] = readFileSync(rolePath, "utf-8");
+					player.Perms[index] = JSON.parse(readFileSync(rolePath, "utf-8"));
 					console.log(`resolved role at ${rolePath}`)
 				} catch {
 					console.warn(`failed to set role at ${rolePath}`)
