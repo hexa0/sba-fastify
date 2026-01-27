@@ -14,7 +14,7 @@ import systemRoutes from "./routes/system";
 import { env } from "./utils/environment";
 import fastifyRawBody from "fastify-raw-body";
 
-const server = Fastify({ logger: true });
+const server = Fastify({ logger: true, bodyLimit: (50 * 1024 * 1024) });
 
 server.register(fastifyJwt, { secret: env.JWT_SECRET });
 server.register(dbPlugin);
