@@ -13,6 +13,7 @@ import permissionsPlugin from "./plugins/permissions";
 import systemRoutes from "./routes/system";
 import { env } from "./utils/environment";
 import fastifyRawBody from "fastify-raw-body";
+import fastifyCompress from "@fastify/compress";
 
 const server = Fastify({ logger: true, bodyLimit: (50 * 1024 * 1024) });
 
@@ -25,6 +26,10 @@ await server.register(fastifyRawBody, {
 	field: "rawBody",
 	global: false,
 	encoding: false,
+});
+
+await server.register(fastifyCompress, { 
+    global: true
 });
 
 server.addContentTypeParser(
