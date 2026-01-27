@@ -33,6 +33,38 @@ export default async function baseRoutes(server: FastifyInstance) {
 		}
 	);
 
+	server.post(
+		"/base/save96",
+		{ preHandler: [server.authenticate] },
+		async (request, reply) => {
+			const { name } = BaseSaveQuerySchema.parse(request.query);
+			const { userId } = request.user as { userId: number };
+			
+			const { data } = request.body as { data: string };
+
+			if (!data) return reply.status(400).send({ error: "No data provided" });
+
+			const contentBuffer = Buffer.alloc(data.length);
+			for (let i = 0; i < data.length; i++) {
+				contentBuffer[i] = data.charCodeAt(i) - 32;
+			}
+
+			await Base.updateOne(
+				{ userId, name },
+				{
+					$set: {
+						content: contentBuffer,
+						size: contentBuffer.length,
+						updatedAt: new Date()
+					}
+				},
+				{ upsert: true }
+			);
+
+			return { success: true };
+		}
+	);
+
 	server.get(
 		"/base/load",
 		{ preHandler: [server.authenticate] },

@@ -38,7 +38,7 @@ async function migrate() {
 					{ userId },
 					{
 						$set: {
-							unlockedItems: itemsArray;
+							unlockedItems: itemsArray,
 							createdAt: trueCreationDate,
 							updatedAt: stats.mtime,
 						},
