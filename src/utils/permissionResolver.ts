@@ -13,11 +13,9 @@ export async function getResolvedPermissions() {
 	if (!existsSync(mainPath))
 		return { error: "Main permissions file missing" };
 
-	const data = JSON.parse(readFileSync(mainPath, "utf-8")) as [PlayerPermsUnprocessed];
+	const data = JSON.parse(readFileSync(mainPath, "utf-8"));
 
-	for (let index = 0; index < data.length; index++) {
-		const player = data[index];
-		
+	data.forEach((player: PlayerPermsUnprocessed) => {
 		for (let index = 0; index < player.Perms.length; index++) {
 			const rolePath = path.join(PERMS_DIR, "roles", `${player.Perms[index]}.json`);
 
@@ -49,9 +47,9 @@ export async function getResolvedPermissions() {
 				console.warn(`icon at ${iconPath} is missing`)
 			}
 		}
-	}
+	});
 
-	console.log(`data returned`)
+	console.log("perm data returned")
 
 	return data;
 }
