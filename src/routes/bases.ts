@@ -33,6 +33,25 @@ export default async function baseRoutes(server: FastifyInstance) {
 	);
 
 	server.get(
+		"/base/load",
+		{ preHandler: [server.authenticate] },
+		async (request, reply) => {
+			const { name } = BaseSaveQuerySchema.parse(request.query);
+			const { userId } = request.user as { userId: number };
+
+			const base = await Base.findOne({ userId, name });
+
+			if (!base) {
+				return reply.status(404).send({ error: "Base not found" });
+			}
+
+			return reply
+				.type("application/octet-stream")
+				.send(base.content);
+		}
+	);
+
+	server.get(
 		"/base/list",
 		{ preHandler: [server.authenticate] },
 		async (request) => {
