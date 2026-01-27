@@ -34,35 +34,17 @@ export default async function baseRoutes(server: FastifyInstance) {
 	);
 
 	server.post(
-		"/base/save96",
+		"/base/save64",
 		{ preHandler: [server.authenticate] },
 		async (request, reply) => {
 			const { name } = BaseSaveQuerySchema.parse(request.query);
 			const { userId } = request.user as { userId: number };
-			
 			const { data } = request.body as { data: string };
 
 			if (!data)
 				return reply.status(400).send({ error: "No data provided" });
 
-			if (data.length % 2 !== 0) {
-				return reply
-					.status(400)
-					.send({ error: "Invalid Base96 data length" });
-			}
-
-			const RANGE = 95;
-			const OFFSET = 32;
-			const decodedLength = data.length / 2;
-			const contentBuffer = Buffer.alloc(decodedLength);
-
-			for (let i = 0; i < decodedLength; i++) {
-				const c1 = data.charCodeAt(i * 2) - OFFSET;
-				const c2 = data.charCodeAt(i * 2 + 1) - OFFSET;
-				
-				// Reconstruct the byte (0-255)
-				contentBuffer[i] = (c1 * RANGE) + c2;
-			}
+			const contentBuffer = Buffer.from(data, 'base64');
 
 			await Base.updateOne(
 				{ userId, name },
