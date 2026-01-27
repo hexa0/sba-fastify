@@ -24,7 +24,6 @@ export const BaseDeleteQuerySchema = z.object({
 
 // POST /unlockables/set
 export const UnlockableSetSchema = z.object({
-	userId: z.coerce.number().int(),
 	name: z.string().min(1),
 });
 

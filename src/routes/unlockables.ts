@@ -22,7 +22,8 @@ export default async function unlockableRoutes(server: FastifyInstance) {
 		"/unlockables/set",
 		{ preHandler: [server.authenticate] },
 		async (request) => {
-			const { userId, name } = UnlockableSetSchema.parse(request.body);
+			const { userId } = request.user as { userId: number };
+			const { name } = UnlockableSetSchema.parse(request.body);
 
 			await UnlockableData.findOneAndUpdate(
 				{ userId },
