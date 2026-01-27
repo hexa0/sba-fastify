@@ -9,11 +9,11 @@ import {
 export default async function baseRoutes(server: FastifyInstance) {
 	server.post(
 		"/base/save",
-		{ preHandler: [server.authenticate] },
+		{ preHandler: [server.authenticate], config: { rawBody: true } },
 		async (request, reply) => {
 			const { name } = BaseSaveQuerySchema.parse(request.query);
 			const { userId } = request.user as { userId: number };
-			const contentBuffer = request.body as Buffer;
+			const contentBuffer = request.rawBody;
 
 			if (!contentBuffer || contentBuffer.length === 0) {
 				return reply.status(400).send({ error: "Empty base content" });
@@ -24,6 +24,7 @@ export default async function baseRoutes(server: FastifyInstance) {
 				{
 					content: contentBuffer,
 					size: contentBuffer.length,
+					updatedAt: new Date()
 				},
 				{ upsert: true }
 			);

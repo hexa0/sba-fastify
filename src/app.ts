@@ -12,6 +12,7 @@ import logRoutes from "./routes/logs";
 import permissionsPlugin from "./plugins/permissions";
 import systemRoutes from "./routes/system";
 import { env } from "./utils/environment";
+import fastifyRawBody from "fastify-raw-body";
 
 const server = Fastify({ logger: true });
 
@@ -25,6 +26,11 @@ server.register(baseRoutes);
 server.register(unlockableRoutes);
 server.register(logRoutes);
 server.register(systemRoutes);
+await server.register(fastifyRawBody, {
+	field: "rawBody",
+	global: false,
+	encoding: false,
+});
 
 server.setErrorHandler((error, request, reply) => {
 	if (error instanceof ZodError) {
