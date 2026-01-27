@@ -52,17 +52,25 @@ export default async function baseRoutes(server: FastifyInstance) {
 		}
 	);
 
-	server.get(
-		"/base/list",
-		{ preHandler: [server.authenticate] },
-		async (request) => {
-			const { userId } = request.user as { userId: number };
-			const bases = await Base.find({ userId }).select(
-				"name updatedAt createdAt size"
-			);
-			return bases;
-		}
-	);
+server.get(
+        "/base/list",
+        { preHandler: [server.authenticate] },
+        async (request) => {
+            const { userId } = request.user as { userId: number };
+            
+
+            const bases = await Base.find({ userId })
+                .select("name updatedAt createdAt size")
+                .sort({ updatedAt: -1 });
+
+            return bases.map(base => ({
+                name: base.name,
+                size: base.size,
+                updatedAt: Math.floor(base.updatedAt.getTime() / 1000),
+                createdAt: Math.floor(base.createdAt.getTime() / 1000)
+            }));
+        }
+    );
 
 	server.patch(
 		"/base/rename",
