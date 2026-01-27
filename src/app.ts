@@ -32,6 +32,14 @@ await server.register(fastifyRawBody, {
 	encoding: false,
 });
 
+server.addContentTypeParser(
+    "application/octet-stream",
+    { parseAs: "buffer" },
+    (req, body, done) => {
+        done(null, body);
+    },
+);
+
 server.setErrorHandler((error, request, reply) => {
 	if (error instanceof ZodError) {
 		const readableIssues = error.issues
