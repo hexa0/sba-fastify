@@ -15,7 +15,9 @@ export async function getResolvedPermissions() {
 
 	const data = JSON.parse(readFileSync(mainPath, "utf-8"));
 
-	data.forEach((player: PlayerPermsUnprocessed) => {
+	(Object.keys(data) as (keyof typeof data)[]).forEach((playerKey) => {
+		const player = data[playerKey] as PlayerPermsUnprocessed;
+
 		for (let index = 0; index < player.Perms.length; index++) {
 			const rolePath = path.join(PERMS_DIR, "roles", `${player.Perms[index]}.json`);
 
