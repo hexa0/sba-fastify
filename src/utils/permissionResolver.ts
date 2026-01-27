@@ -19,33 +19,39 @@ export async function getResolvedPermissions() {
 		const player = data[index];
 		
 		for (let index = 0; index < player.Perms.length; index++) {
-			const key = player.Perms[index];
-
-			const rolePath = path.join(PERMS_DIR, "roles", `${key}.json`);
+			const rolePath = path.join(PERMS_DIR, "roles", `${player.Perms[index]}.json`);
 
 			if (existsSync(rolePath)) {
 				try {
 					player.Perms[index] = readFileSync(rolePath, "utf-8");
+					console.log(`resolved role at ${rolePath}`)
 				} catch {
-					
+					console.warn(`failed to set role at ${rolePath}`)
 				}
+			}
+			else  {
+				console.warn(`role at ${rolePath} is missing`)
 			}
 		}
 
 		for (let index = 0; index < player.icons.length; index++) {
-			const key = player.icons[index];
-
-			const iconPath = path.join(PERMS_DIR, "icons", `${key}.txt`);
+			const iconPath = path.join(PERMS_DIR, "icons", `${player.icons[index]}.txt`);
 
 			if (existsSync(iconPath)) {
 				try {
 					player.icons[index] = readFileSync(iconPath, "utf-8");
+					console.log(`resolved icon at ${iconPath}`)
 				} catch {
-					
+					console.warn(`failed to set icon at ${iconPath}`)
 				}
+			}
+			else {
+				console.warn(`icon at ${iconPath} is missing`)
 			}
 		}
 	}
+
+	console.log(`data returned`)
 
 	return data;
 }
