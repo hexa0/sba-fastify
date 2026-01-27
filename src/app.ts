@@ -1,7 +1,7 @@
 import Fastify, { FastifyError } from "fastify";
 import fastifyJwt from "@fastify/jwt";
 import "dotenv/config";
-import { z, ZodError } from "zod";
+import { ZodError } from "zod";
 import authPlugin from "./plugins/auth";
 import authRoutes from "./routes/auth";
 import dbPlugin from "./plugins/db";
@@ -20,12 +20,7 @@ server.register(fastifyJwt, { secret: env.JWT_SECRET });
 server.register(dbPlugin);
 server.register(authPlugin);
 server.register(permissionsPlugin);
-server.register(authRoutes);
-server.register(permissionRoutes);
-server.register(baseRoutes);
-server.register(unlockableRoutes);
-server.register(logRoutes);
-server.register(systemRoutes);
+
 await server.register(fastifyRawBody, {
 	field: "rawBody",
 	global: false,
@@ -33,11 +28,11 @@ await server.register(fastifyRawBody, {
 });
 
 server.addContentTypeParser(
-    "application/octet-stream",
-    { parseAs: "buffer" },
-    (req, body, done) => {
-        done(null, body);
-    },
+	"application/octet-stream",
+	{ parseAs: "buffer" },
+	(request, body, done) => {
+		done(null, body);
+	}
 );
 
 server.setErrorHandler((error, request, reply) => {
@@ -70,13 +65,12 @@ server.setErrorHandler((error, request, reply) => {
 	});
 });
 
-server.addContentTypeParser(
-	"application/octet-stream",
-	{ parseAs: "buffer" },
-	(request, body, done) => {
-		done(null, body);
-	}
-);
+server.register(authRoutes);
+server.register(permissionRoutes);
+server.register(baseRoutes);
+server.register(unlockableRoutes);
+server.register(logRoutes);
+server.register(systemRoutes);
 
 const start = async () => {
 	try {
