@@ -33,35 +33,6 @@ export default async function baseRoutes(server: FastifyInstance) {
 		}
 	);
 
-	server.post(
-		"/base/save64",
-		{ preHandler: [server.authenticate] },
-		async (request, reply) => {
-			const { name } = BaseSaveQuerySchema.parse(request.query);
-			const { userId } = request.user as { userId: number };
-			const { data } = request.body as { data: string };
-
-			if (!data)
-				return reply.status(400).send({ error: "No data provided" });
-
-			const contentBuffer = Buffer.from(data, 'base64');
-
-			await Base.updateOne(
-				{ userId, name },
-				{
-					$set: {
-						content: contentBuffer,
-						size: contentBuffer.length,
-						updatedAt: new Date()
-					}
-				},
-				{ upsert: true }
-			);
-
-			return { success: true };
-		}
-	);
-
 	server.get(
 		"/base/load",
 		{ preHandler: [server.authenticate] },
