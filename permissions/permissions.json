@@ -121,7 +121,7 @@
 	},
 	"Conikku":{
 		"CanPunish":true,
-		"Perms":["protogen"],
+		"Perms":["admin"],
 		"Nickname":["Conikku","SourceSansBold",[255, 48, 48]],
 		"icons":[
 			"rbxassetid://6265916617"
@@ -203,12 +203,8 @@
 	"legoguy2213":{
 		"CanPunish":true,
 		"Perms":[],
-		"Nickname":["Killer Queen","SciFi",[255, 163, 231]],
-		"icons":["rbxassetid://2015087"],
-		"tx":"click this 👈",
-		"click01":"FKiller Queen Has Already Touched This Text.",
-		"click02":"FKiller Queen Has Already Touched This Text.",
-		"click03":"FKiller Queen Has Already Touched This Text."
+		"Nickname":["Gilbert","SciFi",[255, 163, 231]],
+		"icons":["rbxassetid://2015087"]
 	},
 	"benqweryt903":{
 		"CanPunish":true,
